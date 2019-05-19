@@ -2,10 +2,12 @@
 
 byte buffer[3];
 byte pos = 0;
+const int pinMute = 5;
 
 void setup() {
   Wire.begin();
   Serial.begin(9600);
+  pinMode(pinMute, OUTPUT);
 }
 
 // Address
@@ -28,6 +30,7 @@ void process() {
   switch(buffer[0]) {
     case 1: // Initialize
       {
+        digitalWrite(pinMute, HIGH);
         Wire.beginTransmission(PRC_ADR);
         byte res = Wire.write(byte(SYS_RESET));
         Wire.endTransmission();
