@@ -28,13 +28,13 @@ class Amplifier:
 				break;
 
 	def connect(self):
-		if not os.path.exists('/tmp/amplifier.sock'):
+		if not os.path.exists('/tmp/amplifier.pipe'):
 			self.fail()
 			return
 		if not self.sock is None:
 			return
 		self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-		self.sock.connect('/tmp/amplifier.sock')
+		self.sock.connect('/tmp/amplifier.pipe')
 
 	def send(self, cmd, val):
 		if self.sock is None:
