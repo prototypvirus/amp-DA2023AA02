@@ -11,11 +11,6 @@ namespace AmplifierGUI
         public Controller(string port)
         {
             _serial = new SerialPort(port, 9600);
-            if (Properties.Settings.Default.Tone == null || Properties.Settings.Default.Tone.Length == 0)
-                Properties.Settings.Default.Tone = new byte[] {7, 7, 7};
-            if (Properties.Settings.Default.Trim == null || Properties.Settings.Default.Trim.Length == 0)
-                Properties.Settings.Default.Trim = new byte[] {15, 15, 15, 15, 15, 15};
-            Properties.Settings.Default.Save();
             Initialized = false;
             _serial.Open();
         }
