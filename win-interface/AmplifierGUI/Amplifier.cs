@@ -226,6 +226,9 @@ namespace AmplifierGUI
 
         private void StartListening()
         {
+            int platform = (int) Environment.OSVersion.Platform;
+            if (platform == 4 || platform == 6 || platform == 128)
+                return;
             _watcher = new ManagementEventWatcher {Query = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent")};
             _watcher.EventArrived += DevicesChanged;
             _watcher.Start();
